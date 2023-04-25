@@ -6,7 +6,7 @@ pipeline {
         IMAGE_NAME = "devops-project-image"
         CONTAINER_NAME = "devops-project"
         GIT_REPO = "https://github.com/vivatsal/fitkart.git"
-        GIT_BRANCH = "main"
+        GIT_BRANCH = "master"
     }
     stages {
         stage('Checkout') {
