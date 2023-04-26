@@ -33,8 +33,8 @@ pipeline {
         stage('DockerHub') {
             steps { 
                 sh "sudo docker build . -t ${DOCKERHUB_IMAGE}"
-                sh "sudo docker tag ${DOKCERHUB_IMAGE}:${BUILD_NUMBER} ${DOCKERHUB_REPO}"
-                sh "sudo docker push ${DOKCERHUB_IMAGE}:${BUILD_NUMBER}"
+                sh "sudo docker tag ${DOCKERHUB_IMAGE}:${BUILD_NUMBER} ${DOCKERHUB_REPO}"
+                sh "sudo docker push ${DOCKERHUB_IMAGE}:${BUILD_NUMBER}"
             }
         }
     }
