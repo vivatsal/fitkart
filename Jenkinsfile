@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-        IMAGE_NAME = "vatsalviven/devops-project"
+        IMAGE_NAME = "vatsalviven/devops-project:${BUILD_NUMBER}"
         DOCKERHUB_REPO = "vatsalviven/fitkart"
         CONTAINER_NAME = "devops-project"
         GIT_REPO = "https://github.com/vivatsal/fitkart.git"
@@ -43,7 +43,7 @@ pipeline {
         }
         stage('Clear Image'){
             steps {
-                sh "sudo docker rmi ${IMAGE_NAME}:${BUILD_NUMBER}"
+                sh "sudo docker rmi ${IMAGE_NAME}"
             }
         }
     }
