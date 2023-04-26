@@ -43,7 +43,7 @@ pipeline {
         }
         stage('Clear Image'){
             steps {
-                sh "sudo docker rmi ${IMAGE_NAME}"
+                sh "sudo docker rmi ${IMAGE_NAME}:${BUILD_NUMBER}"
             }
         }
     }
