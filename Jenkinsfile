@@ -42,5 +42,10 @@ pipeline {
                 sh "sudo docker logout"
             }
         }
+        stage('CleanUp'){
+            steps {
+                sh "sudo docker rmi ${IMAGE_NAME}"
+            }
+        }
     }
 }
