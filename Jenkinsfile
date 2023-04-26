@@ -8,6 +8,8 @@ pipeline {
         CONTAINER_NAME = "devops-project"
         GIT_REPO = "https://github.com/vivatsal/fitkart.git"
         GIT_BRANCH = "master"
+        VALUE = 1
+        PREV = $((BUILD_NUMBER-VALUE))
     }
     stages {
         stage('Checkout Git') {
@@ -44,7 +46,7 @@ pipeline {
         }
         stage('Clear Image'){
             steps {
-                sh "sudo docker rmi ${IMG}${BUILD_NUMBER-1}"
+                sh "sudo docker rmi ${IMG}${PREV}"
             }
         }
     }
