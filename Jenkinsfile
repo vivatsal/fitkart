@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
 //         PORT = "85"
+//         PORT = "85"
 //         DOCKERHUB_CREDENTIAL_ID = "dockerhub"
         IMAGE_NAME = "devops-project-image"
         CONTAINER_NAME = "devops-project"
