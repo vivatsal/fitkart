@@ -45,8 +45,7 @@ pipeline {
         }
         stage('Clear Image'){
             steps {
-                sh "count = $((BUILD_NUMBER - VALUE))"
-                sh "sudo docker rmi ${IMG}${$count}"
+                sh "sudo docker rmi ${IMG}${BUILD_NUMBER.toInteger()-1}"
             }
         }
     }
