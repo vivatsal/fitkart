@@ -2,8 +2,9 @@ pipeline {
     agent any
     environment {
 //         PORT = "85"
-//         PORT = "85"
-//         DOCKERHUB_CREDENTIAL_ID = "dockerhub"
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+        DOCKERHUB_IMAGE = "vatsalviven/devops-project"
+        DOCKERHUB_REPO = "vatsalviven/fitkart"
         IMAGE_NAME = "devops-project-image"
         CONTAINER_NAME = "devops-project"
         GIT_REPO = "https://github.com/vivatsal/fitkart.git"
@@ -27,6 +28,13 @@ pipeline {
         stage('Deploy Docker Image') {
             steps {
                 sh "sudo docker run -it -p 100:80 --name ${CONTAINER_NAME} -d ${IMAGE_NAME}"
+            }
+        }
+        stage('DockerHub') {
+            steps { 
+                sh "docker build . -t ${DOCKERHUB_IMAGE}"
+                sh "docker tag ${DOKCERHUB_IMAGE}:${BUILD_NUMBER} ${DOCKERHUB_REPO}
+                sh "docker push ${DOKCERHUB_IMAGE}:${BUILD_NUMBER}"
             }
         }
     }
