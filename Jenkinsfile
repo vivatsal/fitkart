@@ -3,7 +3,7 @@ pipeline {
     environment {
 //         PORT = "85"
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-        DOCKERHUB_IMAGE = "vatsalviven/devops-project"
+        DOCKERHUB_IMAGE = "vatsalviven/devops-project:${BUILD_NUMBER}"
         DOCKERHUB_REPO = "vatsalviven/fitkart"
         IMAGE_NAME = "devops-project-image"
         CONTAINER_NAME = "devops-project"
@@ -33,8 +33,8 @@ pipeline {
         stage('DockerHub') {
             steps { 
                 sh "sudo docker build . -t ${DOCKERHUB_IMAGE}"
-                sh "sudo docker tag ${DOCKERHUB_IMAGE}:${BUILD_NUMBER} ${DOCKERHUB_REPO}"
-                sh "sudo docker push ${DOCKERHUB_IMAGE}:${BUILD_NUMBER}"
+                sh "sudo docker tag ${DOCKERHUB_IMAGE} ${DOCKERHUB_REPO}"
+                sh "sudo docker push ${DOCKERHUB_IMAGE}"
             }
         }
     }
