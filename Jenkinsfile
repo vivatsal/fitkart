@@ -34,7 +34,7 @@ pipeline {
             steps { 
                 sh "sudo docker build . -t ${DOCKERHUB_IMAGE}"
                 sh "sudo docker tag ${DOCKERHUB_IMAGE} ${DOCKERHUB_REPO}"
-                sh "sudo docker push ${DOCKERHUB_IMAGE}"
+                sh "sudo docker push ${DOCKERHUB_REPO}"
             }
         }
     }
