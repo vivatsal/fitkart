@@ -8,7 +8,7 @@ pipeline {
         CONTAINER_NAME = "devops-project"
         GIT_REPO = "https://github.com/vivatsal/fitkart.git"
         GIT_BRANCH = "master"
-        newBuildNumber = env.BUILD_NUMBER.toInteger() - 1
+        
     }
     stages {
         stage('Checkout Git') {
@@ -45,6 +45,7 @@ pipeline {
         }
         stage('Clear Image'){
             steps {
+                def newBuildNumber = env.BUILD_NUMBER.toInteger() - 1
                 sh "sudo docker rmi ${IMG}${newBuildNumber}"
             }
         }
