@@ -21,7 +21,7 @@ pipeline {
                     sh "sudo docker kill ${CONTAINER_NAME}|| true"
                     sh "sudo docker rm ${CONTAINER_NAME}|| true"
                     sh "sudo docker build . -t ${IMAGE_NAME}"
-                    sh "sudo docker logout"
+                    //sh "sudo docker logout"
                 }
             }
         }
@@ -30,11 +30,11 @@ pipeline {
                 sh "sudo docker run -it -p 100:80 --name ${CONTAINER_NAME} -d ${IMAGE_NAME}"
             }
         }
-        stage('Login') {
-            steps {
-                sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
-            }
-        }
+//         stage('Login') {
+//             steps {
+//                 sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
+//             }
+//         }
         stage('DockerHub') {
             steps { 
                 sh "sudo docker tag ${IMAGE_NAME} ${DOCKERHUB_REPO}:${BUILD_NUMBER}"
