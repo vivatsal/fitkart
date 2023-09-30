@@ -3,7 +3,7 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
         IMG = "vatsalviven/devops-project"
-        IMAGE_NAME = "vatsalviven/devops-project${50+BUILD_NUMBER}"
+        IMAGE_NAME = "vatsalviven/devops-project${BUILD_NUMBER}"
         DOCKERHUB_REPO = "vatsalviven/fitkart"
         CONTAINER_NAME = "devops-project"
         GIT_REPO = "https://github.com/vivatsal/fitkart.git"
