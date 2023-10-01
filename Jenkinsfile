@@ -31,18 +31,18 @@ pipeline {
                 sh "sudo docker run -it -p 100:80 --name ${CONTAINER_NAME} -d ${IMAGE_NAME}"
             }
         }
-        // stage('Login Dockerhub') {
-        //     steps {
-        //         sh "echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
-        //     }
-        // }
-        // stage('DockerHub Push') {
-        //     steps { 
-        //         sh "sudo docker tag ${IMAGE_NAME} ${DOCKERHUB_REPO}:${BUILD_NUMBER}"
-        //         sh "sudo docker push ${DOCKERHUB_REPO}:${BUILD_NUMBER}"
-        //         sh "sudo docker logout"
-        //     }
-        // }
+        stage('Login Dockerhub') {
+            steps {
+                sh "echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
+            }
+        }
+        stage('DockerHub Push') {
+            steps { 
+                sh "sudo docker tag ${IMAGE_NAME} ${DOCKERHUB_REPO}:${BUILD_NUMBER}"
+                sh "sudo docker push ${DOCKERHUB_REPO}:${BUILD_NUMBER}"
+                sh "sudo docker logout"
+            }
+        }
         stage('Clear Image'){
             steps {
                 sh "sudo docker rmi ${IMG}${BUILD_NUMBER.toInteger()-1}"
