@@ -45,8 +45,8 @@ pipeline {
         }
         stage('Clear Image'){
             steps {
-                // sh "sudo docker rmi ${IMG}${BUILD_NUMBER.toInteger()-1}"
-                // sh "sudo docker rmi -f ${DOCKERHUB_REPO}:${BUILD_NUMBER}"
+                sh "sudo docker rmi ${IMG}${BUILD_NUMBER.toInteger()-1}"
+                sh "sudo docker rmi -f ${DOCKERHUB_REPO}:${BUILD_NUMBER}"
             }
         }
     }
